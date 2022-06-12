@@ -57,9 +57,9 @@ const DELAY = 1000;
 router.get("/", (req, res) => {
 	const books = req.app.db.get("books");
 
-  setTimeout(() => {
-    res.send(books)
-  }, DELAY)
+	setTimeout(() => {
+		res.send(books)
+	}, DELAY)
 });
 
 /**
@@ -88,9 +88,9 @@ router.get("/", (req, res) => {
 router.get("/:id", (req, res) => {
 	const book = req.app.db.get("books").find({ id: req.params.id }).value();
 
-  setTimeout(() => {
-	  res.send(book);
-  }, DELAY)
+	setTimeout(() => {
+		res.send(book);
+	}, DELAY)
 });
 
 /**
@@ -123,9 +123,9 @@ router.post("/", (req, res) => {
 		};
 		req.app.db.get("books").push(book).write();
 
-    setTimeout(() => {
-	   res.send(book);
-    }, DELAY)
+		setTimeout(() => {
+			res.send(book);
+		}, DELAY)
 	} catch (error) {
 		return res.status(500).send(error);
 	}
@@ -165,10 +165,9 @@ router.post("/", (req, res) => {
 router.put("/:id", (req, res) => {
 	try {
 		req.app.db.get("books").find({ id: req.params.id }).assign(req.body).write();
-
 		setTimeout(() => {
-      res.send(req.app.db.get("books").find({ id: req.params.id }));
-    }, DELAY)
+			res.send(req.app.db.get("books").find({ id: req.params.id }));
+		}, DELAY)
 	} catch (e) {
 		return res.status(500).send(e);
 	}
@@ -196,9 +195,9 @@ router.put("/:id", (req, res) => {
 router.delete("/:id", (req, res) => {
 	req.app.db.get("books").remove({ id: req.params.id }).write();
 
-  setTimeout(() => {
-	  res.sendStatus(200);
-  }, DELAY)
+	setTimeout(() => {
+		res.sendStatus(200);
+	}, DELAY)
 });
 
 module.exports = router;
